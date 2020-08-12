@@ -123,8 +123,10 @@ console.log(wordLengths(["She", "sells", "seashells", "down", "by", "the", "seas
 
 // 71.
 function getFilename(path) {
-	let dummy = path.split('/');
-	return dummy[dummy.length-1];
+	// let dummy = path.split('/');
+	// return dummy[dummy.length-1];
+
+	return path.substring(path.lastIndexOf("/"))
 
 }
 console.log( getFilename("C:/Projects/pil_tests/ascii/edabit.txt") ); // "edabit.txt"

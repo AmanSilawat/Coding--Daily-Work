@@ -1,3 +1,13 @@
+// 72 ==>	Nth Star Number
+// 	Create a function that takes a positive integer and returns the nth "star number".
+// 	A star number is a centered figurate number a centered hexagram (six-pointed star), such as the one that Chinese checkers is played on.
+		starNumber(2) ➞ 13
+		starNumber(3) ➞ 37
+		starNumber(5) ➞ 121
+
+
+
+
 // 73 ==>	Lowercase, Uppercase or Mixed?
 // 	Create a function which returns "upper" if all the letters in a word are uppercase, "lower" if lowercase and "mixed" for any mix of the two.
 function getCase(str) {
@@ -109,7 +119,7 @@ function filterArray(arr) {
 // 80 ==>	Summing the Squares
 // Create a function where given the number n, return the sum of all square numbers up to and including n.
 function squaresSum(num) {
-	return  num ** 2 + ( num >= 1 ? squaresSum(num-1) : 0 ) ;
+	return num ** 2 + ( num >= 1 ? squaresSum(num-1) : 0 ) ;
 }
 // 1² + 2² + 3² =
 // 1 + 4 + 9 =

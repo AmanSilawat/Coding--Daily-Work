@@ -31,11 +31,11 @@ function addOddToN(num) {
 // 84 ==>	Halloween Day
 // Create a function that takes date in the format yyyy/mm/dd as an input and returns "Bonfire toffee" if the date is October 31, else return "toffee".
 function halloween(date) {
-	let newDate = new Date(date);
-	if ( ( newDate.getMonth()+1 ) == 10 && newDate.getDate() == 31) {
-		return "Bonfire toffee";
-	}
-	return "toffee";
+	// let newDate = new Date(date);
+	// if ( ( newDate.getMonth()+1 ) == 10 && newDate.getDate() == 31) {
+	// 	return "Bonfire toffee";
+	// }
+	// return "toffee";
 
 
 	// let [year, month, day] = date.split('/')
@@ -43,6 +43,9 @@ function halloween(date) {
 	// 	return "Bonfire toffee";
 	// }
 	// return "toffee";
+
+	// var dummy = str.split("/");   ----------------
+	// return ( dummy[1]  )
 
 }
 // console.log( halloween("2013/10/31") ); // "Bonfire toffee"
@@ -108,6 +111,40 @@ function limitNumber(val, min, max) {
 // console.log( limitNumber(-3, 1, 10) ); // 1
 // console.log( limitNumber(14, 1, 10) ); // 10
 // console.log( limitNumber(4.6, 1, 10) ); //4.6
+
+
+
+
+// 87 ==>	Skip the Drinks with Too Much Sugar
+// The function skipTooMuchSugarDrinks() takes in an array of drinks. Make sure the function only returns an array of drinks with no sugar in it or a little bit of sugar.
+// Drinks that contain too much sugar (in this challenge) are:
+// Cola
+// Fanta
+function skipTooMuchSugarDrinks(arr) {
+	return arr.filter(ele=>ele != "cola" && ele != "fanta");
+}
+console.log(skipTooMuchSugarDrinks(["fanta", "cola", "water"]) );// [water]
+console.log(skipTooMuchSugarDrinks(["fanta", "cola"]) );// []
+console.log(skipTooMuchSugarDrinks(["lemonade", "beer", "water"]) );// ["lemonade", "beer", "water"]
+
+
+
+// 88 ==>	Add a Consecutive List of Numbers
+// Write a function that takes the last number of a consecutive list of numbers and returns the total of all numbers up to and including it.
+function addUpTo(num) {
+	let tot = 0;
+	for (var i = 0; i <= num; i++) {
+		tot += i;
+	}
+	return tot;
+}
+console.log(addUpTo(3) ); // 6
+// 1 + 2 + 3 = 6
+console.log(addUpTo(10) ); // 55
+// 1 + 2 + 3 + ... + 10 = 55
+console.log(addUpTo(7) ); // 28
+// 1 + 2 + 3 + ... + 7 = 28
+
 
 
 

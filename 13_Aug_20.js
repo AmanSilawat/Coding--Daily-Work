@@ -10,15 +10,19 @@ function addOddToN(num) {
 	}
 	return sum;
 	
-	// -------------------------  pannding
-	// if (num == 1) {
-	// 	return 1;
-	// }
-	// else {
-	// 	// return (num % 2 != 0) ? addOddToN(num-1) + num : 0;
-	// 	return num + (addOddToN(num-1) % 2 != 0) ?  num : 0;
-	// }
+	// -------------------------  recursive TYPE Ones
+	if (n <= 1){ return 1; }
+	else{
+		if(n%2 === 0){
+			return addOddToN(n - 1);
+		}
+		else {
+			return n + addOddToN(n - 1);
+		}
+	}
 
+	// -------------------------  recursive	TYPE TWO
+	// return (n <= 1) ? 1 : (n%2 === 0) ? addOddToN(n - 1) : n + addOddToN(n - 1);
 
 }
 // console.log( addOddToN(5) ); // 9
@@ -55,35 +59,58 @@ function halloween(date) {
 
 
 
-// 85 ==>	Simple OOP Calculator    $$ TYPE ONE $$
+// 85 ==>	Simple OOP Calculator    
 // Create functions for the Calculator class that can do the following:
 // Add two numbers.
 // Subtract two numbers.
 // Multiply two numbers.
 // Divide two numbers.
-function Calculator() {
-	const newCalc = Object.create(calcObj);
-	return newCalc;
-}
 
-const calcObj = {
-	add: function (num1, num2) { return num1 + num2	},
-	subtract: function (num1, num2) { return num1 - num2},
-	multiply: function (num1, num2) { return num1 * num2},
-	divide: function (num1, num2) { return num1 / num2}
-}
-
-// let calculation = {
-// 	add: function() {
-// 		// body...
-// 	}
+// $$ TYPE ONE $$  ---------------------
+// function Calculator() {
+// 	const newCalc = Object.create(calcObj);
+// 	return newCalc;
 // }
 
-var calculator = new Calculator()
+// const calcObj = {
+// 	add: function (num1, num2) { return num1 + num2	},
+// 	subtract: function (num1, num2) { return num1 - num2},
+// 	multiply: function (num1, num2) { return num1 * num2},
+// 	divide: function (num1, num2) { return num1 / num2}
+// }
+
+
+// $$ TYPE TWO $$  ---------------------
+// function Calculator() {
+// }
+
+// Calculator.prototype.add = function (num1, num2) { return num1 + num2},
+// Calculator.prototype.subtract = function (num1, num2) { return num1 - num2},
+// Calculator.prototype.multiply = function (num1, num2) { return num1 * num2},
+// Calculator.prototype.divide = function (num1, num2) { return num1 / num2}
+
+// var calculator = new Calculator()
 // console.log( calculator.add(10, 5) ); // 15
 // console.log( calculator.subtract(10, 5) ); // 5
 // console.log( calculator.multiply(10, 5) ); // 50
 // console.log( calculator.divide(10, 5) ); // 2
+
+
+
+// $$ TYPE THREE $$  ---------------------
+class Calculator {
+	add(num1, num2) { return num1 + num2}
+	subtract(num1, num2) { return num1 - num2}
+	multiply(num1, num2) { return num1 * num2}
+	divide(num1, num2) { return num1 / num2}
+}
+
+
+var calculator = new Calculator()
+console.log( calculator.add(10, 5) ); // 15
+console.log( calculator.subtract(10, 5) ); // 5
+console.log( calculator.multiply(10, 5) ); // 50
+console.log( calculator.divide(10, 5) ); // 2
 
 
 

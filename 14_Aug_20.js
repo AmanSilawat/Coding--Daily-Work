@@ -67,7 +67,7 @@ function reverse(bool){
     // else{
     //     return "boolean unexpected"
     // }
-    return typeof bool == "boolean"?!bool:"boolean unexpected"
+    return typeof bool == "boolean"? !bool :"boolean unexpected"
 }
 console.log(reverse(true))
 console.log(reverse(false))

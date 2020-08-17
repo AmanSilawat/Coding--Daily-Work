@@ -91,23 +91,21 @@ function checkEquals(arr1, arr2) {
     // return arr1.flat(Infinity).join("") === arr2.flat(Infinity).join("")
 
     //Compairing nD Array Using Recursion
-    function checkEquals(arr1, arr2) {
-        if ((Array.isArray(arr1) == false || Array.isArray(arr2) == false) || (arr1.length != arr2.length)) { //array1[i] instanceof Array
-            return false
-        }
-        for (let i = 0, j = arr1.length; i < j; i++) {
-            if (Array.isArray(arr1[i]) && Array.isArray(arr2[i])) {
-                if (checkEquals(arr1[i], arr2[i]) == false) {
-                    return false
-                }
-            } else {
-                if (arr1[i] !== arr2[i]) {
-                    return false
-                }
+    if ((Array.isArray(arr1) == false || Array.isArray(arr2) == false) || (arr1.length != arr2.length)) { //array1[i] instanceof Array
+        return false
+    }
+    for (let i = 0, j = arr1.length; i < j; i++) {
+        if (Array.isArray(arr1[i]) && Array.isArray(arr2[i])) {
+            if (checkEquals(arr1[i], arr2[i]) == false) {
+                return false
+            }
+        } else {
+            if (arr1[i] !== arr2[i]) {
+                return false
             }
         }
-        return true
     }
+    return true
     // Compairing 1D Array -----
     // if (arr1.length === arr2.length) {
     //     for (let i = 0; i < arr1.length; i++) {
@@ -126,7 +124,15 @@ function checkEquals(arr1, arr2) {
 console.log(checkEquals(
     [1, 2, 3, [1, 2, 3, [1, 2, 3, [1, 2, 3, [1, 2, 3]]]]],
     [1, 2, 3, [1, 2, 3, [1, 2, 3, [1, 2, 3, [1, 2, 3]]]]],
-))
+));
+console.log(checkEquals(
+    [1, [2], 3, [1, [2], 3, [1, [2], 3, [1, 2, 3, [1, [2], 3]]]]],
+    [1, 2, 3, [1, 2, 3, [1, 2, 3, [1, 2, 3, [1, 2, 3]]]]],
+));
+console.log(checkEquals(
+    [1, 2, 3, [1, 2, 3,[1, 2, 3], [1, 2, 3, [1, 2, 3, [1, 2, 3]]]]],
+    [1, 2, 3, [1, 2, 3, [1, 2, 3, [1, 2, 3, [1, 2, 3]]]]],
+));
 
 
 // Compairing 1D Array (console) -----
@@ -162,12 +168,15 @@ console.log("121 --->")
 // 	Return undefined if the function takes no parameters.
 // 	If the function only takes in one parameter, the firstArg and lastArg functions should return the same value.
 
+//PATTERN 1 ----
 // function firstArg(...arg){
 //     return arg.shift()
 // }
 // function lastArg(...arg){
 //     return arg.pop()
 // }
+
+//PATTERN 2 ----
 function firstArg() {
     return arguments.shift() //arguments[0]
 }
@@ -210,12 +219,18 @@ console.log("123 --->")
 // 			[1, 1]
 // 		]) ➞ 0
 // 	Matrix will be in 2 * 2 form only.
+
+//PATTERN 1 ----
 // function calcDeterminant([arr1,arr2]){
 //     return (arr1[0] * arr2[1]) - (arr1[1] * arr2[0])
 // }
+
+//PATTERN 2 ----
 // function calcDeterminant([[a,b],[c,d]]){
 //     return (a * d) - (b * c)
 // }
+
+//PATTERN 3 ----
 function calcDeterminant(arr) {
     let [a, b, c, d] = arr.flat(Infinity)
     return (a * d) - (b * c)
@@ -238,12 +253,8 @@ console.log(calcDeterminant([
 console.log("124 --->")
 // 124 ==>	Check Factors
 // 	Write a function that returns true if all integers in an array are factors of a number, and false otherwise.
-// 		checkFactors([2, 3, 4], 12) ➞ true
-// 		// Since 2, 3, and 4 are all factors of 12.
-// 		checkFactors([1, 2, 3, 8], 12) ➞ false
-// 		// 8 is not a factor of 12.
-// 		checkFactors([1, 2, 50], 100) ➞ true
-// 		checkFactors([3, 6], 9) ➞ false
+
+//PATTERN 1 -----
 function checkFactors(array, number) {
     for (let i = 0; i < array.length; i++) {
         if (number % array[i]) {
@@ -252,7 +263,9 @@ function checkFactors(array, number) {
     }
     return true
 }
-// getting all the factors of a number using form and filter
+
+//PATTERN 2 -----
+// NTH number of all factors of numbers
 // function checkFactors(number){
 //     let dummy = []
 //       for(let i = 1; i<=number; i++){
@@ -262,12 +275,17 @@ function checkFactors(array, number) {
 //       }
 //       return dummy
 //   }
-//   console.log(checkFactors(12))
-//   console.log(checkFactors(36))
-console.log(checkFactors([2, 3, 4], 12))
-console.log(checkFactors([1, 2, 3, 8], 12))
-console.log(checkFactors([1, 2, 50], 100))
-console.log(checkFactors([3, 6], 9))
+//   console.log(checkFactors(12)) //[1, 2, 3, 4, 6, 12]
+//   console.log(checkFactors(36)) //[1, 2, 3, 4, 6, 9, 12, 18, 36]
+
+// getting all the factors of a number using form and filter-----
+
+console.log(checkFactors([2, 3, 4], 12)) //true
+// 		// Since 2, 3, and 4 are all factors of 12.
+console.log(checkFactors([1, 2, 3, 8], 12)) //false
+// 		// 8 is not a factor of 12.
+console.log(checkFactors([1, 2, 50], 100)) //true
+console.log(checkFactors([3, 6], 9)) //false
 
 
 
@@ -292,11 +310,14 @@ console.log("126 --->")
 // 126 ==>	Generate a Countdown of Numbers in an Array
 // 	Create a function that takes a number as an argument and returns an array of numbers counting down from this number to zero.
 function countdown(number) {
+    //PATTERN 1-----
     // let dummy = []
     // for (let i = number; i >=0; i--) {
     //     dummy.push(i)
     // }
     // return dummy
+
+    //PATTERN 2-----
     return Array.from({ length: number + 1 }, (x, y) => y).reverse()
 }
 console.log(countdown(5)) // [5, 4, 3, 2, 1, 0]
@@ -394,6 +415,15 @@ console.log("131 --->")
 // 4 ==> https://www.youtube.com/watch?v=LtlZtFXe8Io
 
 
+function firstAndLast(str) {
+    return [str.split('').sort().join(''), str.split('').sort().reverse().join('')];
+}
+
+console.log( firstAndLast("marmite") ); // ["aeimmrt", "trmmiea"]
+console.log( firstAndLast("bench") ); // ["bcehn", "nhecb"]
+console.log( firstAndLast("scoop") ); // ["coops", "spooc"]
+
+
 
 console.log("132 --->")
 // 132 ==>	Recursion: Reverse a String
@@ -405,7 +435,12 @@ console.log("132 --->")
 // 	For non-base cases, your function must call itself at least once.
 // 	Check the Resources tab for info on recursion.
 function reverse(str){
-
+    if (str.length == 0) {
+        return str;
+    }
+    else {
+        return str.slice(-1) + reverse(str.slice(0, -1))
+    }
 }
 console.log(reverse("hello")) // "olleh"
 console.log(reverse("world")) // "dlrow"

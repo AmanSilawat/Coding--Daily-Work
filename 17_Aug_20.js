@@ -82,14 +82,15 @@ console.log( sortDrinkByPrice(drinks) ); // [{name: "lime", price: 10}, {name: "
 // 136 ==>	Characters in Shapes
 // 	Create a function that counts how many characters make up a rectangular shape. You will be given a array of strings.
 function countCharacters(arr) {
-	let totNumOfStr = 0;
-	for (var i = 0; i < arr.length; i++) {
-		if (arr[i].length != arr[0].length) {
-			return false;
-		}
-		totNumOfStr += arr[i].length;
-	}
-	return totNumOfStr;
+	// let totNumOfStr = 0;
+	// for (var i = 0; i < arr.length; i++) {
+	// 	if (arr[i].length != arr[0].length) {
+	// 		return false;
+	// 	}
+	// 	totNumOfStr += arr[i].length;
+	// }
+	// return totNumOfStr;
+
 }
 
 
@@ -120,7 +121,9 @@ console.log( countCharacters([ "", ""]) );// 0
 // 		- The output should always be a string even if it is not a multiple of 3 or 5.
 function FizzBuzz(num) {
 	// return num % 3 == 0 && num % 5 != 0 ? "Fizz" : ''
-	return num % 3 == 0 && num % 5 == 0 ? "FizzBuzz" : num % 3 == 0 ? 'Fizz' : num % 5 == 0 ? 'Buzz' : num;
+	// return num % 3 == 0 && num % 5 == 0 ? "FizzBuzz" : num % 3 == 0 ? 'Fizz' : num % 5 == 0 ? 'Buzz' : num;
+
+	return (num % 3 ? "" : 'Fizz') + (num % 5 ? "" : 'Buzz') || String(num)
 }
 console.log(FizzBuzz(3) ); // "Fizz"
 console.log(FizzBuzz(5) ); // "Buzz"

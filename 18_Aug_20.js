@@ -48,12 +48,25 @@ function sortNumsAscending(arr) {
 // 142 ==>	Most Left Digit
 // 	Write a function that takes a string as an argument and returns the left most digit in the string.
 function leftDigit(str) {
-	return Array.from(str).find(ele=> !isNaN( Number(ele) )  );
+	return str.split('').find(ele=> !isNaN( Number(ele) )  );
+	//// => string.split() x 7,777 ops/sec ±16.99% (89 runs sampled)
+
+	// return [...str].find(ele=> !isNaN( Number(ele) )  );
+	//// => Object spread x 284 ops/sec ±2.89% (77 runs sampled)
+
+	// return Array.from(str).find(ele=> !isNaN( Number(ele) )  );
+	//// => Array.from() x 138 ops/sec ±1.48% (75 runs sampled)
+
+
+	// ------► Fastest is string.split() ◄------
+	//		   ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲
+	//		   | | | | | | | | | | | | |
+
 }
-// console.log( leftDigit("TrAdE2W1n95!") ); // 2
-// console.log( leftDigit("V3r1ta$") ); // 3
-// console.log( leftDigit("U//DertHe1nflu3nC3") ); // 1
-// console.log( leftDigit("J@v@5cR1PT") ); // 5
+console.log( leftDigit("TrAdE2W1n95!") ); // 2
+console.log( leftDigit("V3r1ta$") ); // 3
+console.log( leftDigit("U//DertHe1nflu3nC3") ); // 1
+console.log( leftDigit("J@v@5cR1PT") ); // 5
 
 
 

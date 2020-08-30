@@ -14,49 +14,75 @@
 // 	You can expect only valid formatted dates, without exceptions to handle.
 function sortDates(arr, type) {
 	// PATTERN 1
-    let dateArray = []
-    for (let i = 0; i < arr.length; i++) {
-        let [date, time] = arr[i].split("_")
-        let [day, month, year, hours, minutes] = [...date.split("-"), ...time.split(":")]
-        month -= 1
-        dateArray.push(new Date(year, month, day, hours, minutes))
-    }
-    return dateArray.sort((a, b) => {
-        if(type == "DSC"){
-            if(a < b){
-                return 1
-            }else if(a>b){
-                return -1
-            }else{
-                return 0
-            }
-        }
-        else{
-            if(a < b){
-                return -1
-            }else if(a>b){
-                return 1
-            }else{
-                return 0
-            }
-        }
-    })
-    console.log(dateArray)
+    // let dateArray = []
+    // for (let i = 0; i < arr.length; i++) {
+    //     let [date, time] = arr[i].split("_")
+    //     let [day, month, year, hours, minutes] = [...date.split("-"), ...time.split(":")]
+    //     month -= 1
+    //     dateArray.push(new Date(year, month, day, hours, minutes))
+    // }
+    // return dateArray.sort((a, b) => {
+    //     if(type == "DSC"){
+    //         if(a < b){
+    //             return 1
+    //         }else if(a>b){
+    //             return -1
+    //         }else{
+    //             return 0
+    //         }
+    //     }
+    //     else{
+    //         if(a < b){
+    //             return -1
+    //         }else if(a>b){
+    //             return 1
+    //         }else{
+    //             return 0
+    //         }
+    //     }
+    // })
+    // console.log(dateArray)
 
 	// PATTERN 2
-    //step1  sort arr
     // return arr.sort((a, b) => {
-    //     let year, month, day, hours, minutes
-    //     return a.split("_")
-    //     // let date1 = new Date(a.split("_").join(" "))
-    //     // let date2 = new Date(b.split("_").join(" "))
+    // 	let [date1, time1] = a.split("_");
+    // 	let [date2, time2] = b.split("_");
 
-    //     // let year1 = date1.getFullYear(), year2 = date2.getFullYear();
-    //     console.log(date1, date2)
-    // })
-    //step1.1 extract dates into the variables
-    //step2 check the order ascending or descending through variables
-    //step3 sort the array
+    //     let [day1, month1, year1, hours1, minutes1] = [...date1.split("-"), ...time1.split(":")]
+    //     let [day2, month2, year2, hours2, minutes2] = [...date2.split("-"), ...time2.split(":")]
+    //     month1 -= 1;
+    //     month2 -= 1;
+
+    //     let dateA = new Date(year1, month1, day1, hours1, minutes1);
+    //     let dateB = new Date(year2, month2, day2, hours2, minutes2);
+
+    //     if (type == "ASC") {
+    //     	return dateA < dateB ? -1 : dateA > dateB ? 1 : 0;
+    //     }
+    //     else{
+    //     	return dateA > dateB ? -1 : dateA < dateB ? 1 : 0;
+    //     }
+    // });
+
+    // PATTERN 3
+    return arr.sort((a, b) => {
+    	let [[date1, time1],[date2, time2]] = [a.split("_"), b.split("_")];
+
+        let [[day1, month1, year1], [hours1, minutes1]] = [date1.split("-"), time1.split(":")]
+        let [[day2, month2, year2], [hours2, minutes2]] = [date2.split("-"), time2.split(":")]
+        month1--, month2--;
+
+        let dateA = new Date(year1, month1, day1, hours1, minutes1);
+        let dateB = new Date(year2, month2, day2, hours2, minutes2);
+
+        if (type == "ASC") {
+        	return dateA < dateB ? -1 : dateA > dateB ? 1 : 0;
+        }
+        else{
+        	return dateA > dateB ? -1 : dateA < dateB ? 1 : 0;
+        }
+    });
+
 }
 console.log(sortDates(["10-02-2018_12:30", "10-02-2016_12:30", "10-02-2018_12:15"], "ASC"))
 // [ "10-02-2016_12:30", "10-02-2018_12:15", "10-02-2018_12:30" ]

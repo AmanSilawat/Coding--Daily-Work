@@ -116,7 +116,7 @@ function oddSort(arr, i = 0) {
 
 
 
-// 176 ==>	Sort Positives, Keep Negatives
+// 178 ==>	Sort Positives, Keep Negatives
 // 	Write a function that sorts the positive numbers in ascending order, and keeps the negative numbers untouched.
 // 	If given an empty array, you should return an empty array.
 // 	Integers will always be either positive or negative (0 isn't included in the tests).
@@ -134,7 +134,7 @@ console.log( posNegSort([])); // []
 
 
 
-// 177 ==> Burrows-Wheeler Transform
+// 179 ==> Burrows-Wheeler Transform
 // 	Burrows-Wheeler transform (BWT) is an algorithm which is used in data compression. Given a string text, BWT of text is a modified version of the string with same length as text. It can then be used to efficiently find substrings of text (which won't be covered here). We will just find the BWT of text. Consider "$" as the terminator character at the end of every input text.
 // 		Build Burrows-Wheeler-Matrix (BWM) containing all rotations of text.
 // 		Sort BWM lexicographically ($ < a < b < ... < z).

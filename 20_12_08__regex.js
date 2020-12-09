@@ -65,11 +65,12 @@ function asterisk(str) {
 // Create a function to extract the name of the subreddit from its URL.
 // Examples
 function subReddit(str) {
-// return str.match(/\w+\/?$/g)[0].split('/')[0];
-return str.match(/\/\w+\/?$/g)[0].replace(/\//g, '');
-}
+	// return str.match(/\w+\/?$/g)[0].split('/')[0];
 
-// 'https://www.reddit.com/r/funny/'.replace(/\w.*com/, '')
+	// return str.match(/\/\w+\/?$/g)[0].replace(/\//g, '');
+
+	return str.replace(/.*\/(\w+)\/?$/, '$1');
+}
 
 console.log( subReddit("https://www.reddit.com/r/adfadf/funny/") ) // "funny"
 console.log( subReddit("https://www.reddit.com/r/relationships/") ) // "relationships"

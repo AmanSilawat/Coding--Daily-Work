@@ -77,8 +77,55 @@ var romanToInt2 = function (s) {
 
 
 
-console.log(romanToInt2('III')); // 3
-console.log(romanToInt2('IV')); // 4
-console.log(romanToInt2('IX')); // 9
-console.log(romanToInt2('LVIII')); // 58
-console.log(romanToInt2('MMMXLV')); // 3045
+
+// Runtime: 43.62 %,    176 ms,
+// Memory: 62.40%,      45.2 MB
+var romanToInt3 = function (s) {
+    s = s.split('')
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] === 'I') s[i] = 1
+        if (s[i] === 'II') s[i] = 2
+        if (s[i] === 'III') s[i] = 3
+        if (s[i] === 'V') s[i] = 5
+        if (s[i] === 'X') s[i] = 10
+        if (s[i] === 'L') s[i] = 50
+        if (s[i] === 'C') s[i] = 100
+        if (s[i] === 'D') s[i] = 500
+        if (s[i] === 'M') s[i] = 1000
+    }
+    return s.reduce((result, item, index, array) => item < (array[index + 1]) ? result -= item : result += item, 0)
+};
+
+
+debugger
+
+// Runtime: 75.23%,    164 ms,
+// Memory: 62.40%,      45.2 MB
+var romanToInt4 = function (s) {
+    const map = {
+        I: 1,
+        V: 5,
+        X: 10,
+        L: 50,
+        C: 100,
+        D: 500,
+        M: 1000
+    }
+    let sum = 0;
+    let prevValue = 0;
+    for (let index = 0; index < s.length; index++) {
+        const value = map[s[index]]
+        sum += value
+        if (prevValue < value) {
+            sum = sum - (2 * prevValue)
+        }
+        prevValue = value;
+    }
+    return sum;
+};
+
+console.log(romanToInt4('III')); // 3
+console.log(romanToInt4('IV')); // 4
+console.log(romanToInt4('IX')); // 9
+console.log(romanToInt4('LVIII')); // 58
+console.log(romanToInt4('MMMXLV')); // 3045

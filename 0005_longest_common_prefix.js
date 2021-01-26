@@ -51,12 +51,12 @@ var _longestCommonPrefix = function (strs) {
 
 // patter 3
 var _longestCommonPrefix = function (strs) {
+    debugger
     if (strs == null || strs.length == 0) return "";
     for (let i = 0; i < strs[0].length ; i++) {
-        let c = strs[0].charAt(i);
-        console.log(c);
+        let c = strs[0][i];
         for (let j = 1; j < strs.length; j++) {
-            if (i == strs[j].length || strs[j].charAt(i) != c)
+            if (i == strs[j].length || strs[j][i] != c)
                 return strs[0].substring(0, i);
         }
     }
@@ -65,6 +65,7 @@ var _longestCommonPrefix = function (strs) {
 
 
 // patter 4
+// ! Error on  this(["c", "acc", "ccc"])
 var longestCommonPrefix = function (strs) {
     if (strs.length == 0) { return ''; }
 
@@ -82,6 +83,35 @@ var longestCommonPrefix = function (strs) {
     return matchResult;
 };
 
-// console.log(longestCommonPrefix(["flower", "flow", "flight"]));
+// patter 5
+// Not solved
+var _longestCommonPrefix = function (strs) {
+    if (strs.length == 0) { return ''; }
+
+    let matchResult = strs[0];
+    for (let i = 1; i < strs.length; i++) {
+        let regexPattern = '^'
+
+        if (matchResult.length < strs[i].length) {
+            regexPattern += matchResult
+            matchResult = strs[i];
+        } else {
+            regexPattern += strs[i];
+        }
+
+        let regex = new RegExp(regexPattern, 'g');
+        
+        let res = matchResult.match(regex);
+        console.log(matchResult, regex, res);
+        if (res == null) {
+            matchResult = '';
+        } else {
+            matchResult = res[0];
+        }
+    }
+    return matchResult;
+};
+
+console.log(longestCommonPrefix(["flower", "flow", "flight"]));
 // console.log(longestCommonPrefix(["dog", "racecar", "car"]));
-console.log(longestCommonPrefix(["c", "acc", "ccc"])); // "c"
+// console.log(longestCommonPrefix(["c", "acc", "ccc"])); // "c" 

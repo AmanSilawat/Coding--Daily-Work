@@ -70,31 +70,42 @@ list.getFirst() //returns ListNode { val: 1, next: ListNode { val: 2, next: List
  * @return {ListNode}
  */
 
+// Runtime: 92 ms, faster than 66.00 %
+// Memory Usage: 41.6 MB, less than 5.13 % 
 var mergeTwoLists = function (l1, l2) {
-    let arr = []
+    if (l1 == null && l2 == null) {
+        return null;
+    }
+
     let l1Node = l1;
     let l2Node = l2;
+    let arr = [];
 
     let list;
     while (l1Node || l2Node) {
         const num1 = l1Node ? l1Node.val : Infinity;
         const num2 = l2Node ? l2Node.val : Infinity;
 
-        let tempNode;
-
         if (num1 <= num2) {
             list = new ListNode(l1Node.val);
-            
-            arr.push(l1Node.val);
             l1Node = l1Node.next;
+            arr.push(list)
         } else {
-            arr.push(l2Node.val);
+            list = new ListNode(l2Node.val);
             l2Node = l2Node.next;
+            arr.push(list)
         }
-        console.log(arr, list)
     }
-    return arr
+
+    return createNodeList(arr);
 };
+
+function createNodeList(arr) {
+    for (let i = 1; i < arr.length; i++) {
+        arr[i - 1].next = arr[i];
+    }
+    return arr[0]
+}
 
 const l1 = {
     val: 1,
@@ -117,5 +128,6 @@ const l2 = {
         }
     }
 };
+
 
 console.log(mergeTwoLists(l1, l2));

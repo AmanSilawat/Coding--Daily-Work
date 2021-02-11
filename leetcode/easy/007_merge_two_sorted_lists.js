@@ -72,7 +72,7 @@ list.getFirst() //returns ListNode { val: 1, next: ListNode { val: 2, next: List
 
 // Runtime: 92 ms, faster than 66.00 %
 // Memory Usage: 41.6 MB, less than 5.13 % 
-var mergeTwoLists = function (l1, l2) {
+var _ = function (l1, l2) {
     if (l1 == null && l2 == null) {
         return null;
     }
@@ -82,7 +82,7 @@ var mergeTwoLists = function (l1, l2) {
     let arr = [];
 
     let list;
-    while (l1Node || l2Node) {
+    while (l1Node != null || l2Node != null) {
         const num1 = l1Node ? l1Node.val : Infinity;
         const num2 = l2Node ? l2Node.val : Infinity;
 
@@ -130,4 +130,106 @@ const l2 = {
 };
 
 
-console.log(mergeTwoLists(l1, l2));
+// !optimized version pattern 1
+// Runtime: 92 ms, faster than 65.82 %
+// Memory Usage: 41.6 MB, less than 5.24 %
+var mergeTwoLists = function (l1, l2) {
+    if (l1 == null && l2 == null) {
+        return null;
+    }
+
+    let l1Node = l1;
+    let l2Node = l2;
+    let arr = [];
+
+    let list;
+    let i = 0;
+    while (l1Node != null || l2Node != null) {
+        const num1 = l1Node ? l1Node.val : Infinity;
+        const num2 = l2Node ? l2Node.val : Infinity;
+
+        if (num1 <= num2) {
+            list = new ListNode(l1Node.val);
+            arr.push(list)
+            l1Node = l1Node.next;
+        } else {
+            list = new ListNode(l2Node.val);
+            arr.push(list)
+            l2Node = l2Node.next;
+        }
+
+        if (i > 0) {
+            arr[i - 1].next = arr[i];
+        }
+        i++
+    }
+
+    return arr[0];
+};
+
+
+// !optimized version pattern 2
+class LinkedList_2 {
+    constructor(head = null) {
+        this.head = head;
+        this.tail = '?';
+        
+    }
+}
+
+let node_1 = new ListNode(10);
+let node_2 = new ListNode(20);
+
+let myList = new LinkedList_2()
+
+if (myList.head == null) {
+    myList.head = node_1
+}
+
+
+
+
+
+console.log(myList)
+
+
+
+
+
+
+// var mergeTwoLists = function (l1, l2) {
+//     if (l1 == null && l2 == null) {
+//         return null;
+//     }
+
+//     let l1Node = l1;
+//     let l2Node = l2;
+//     let linkList = new LinkedList();
+//     let arr = [];
+
+//     let list;
+//     let i = 0;
+//     while (l1Node != null || l2Node != null) {
+//         const num1 = l1Node ? l1Node.val : Infinity;
+//         const num2 = l2Node ? l2Node.val : Infinity;
+
+//         if (num1 <= num2) {
+//             list = new ListNode(l1Node.val);
+//             arr.push(list)
+//             l1Node = l1Node.next;
+//         } else {
+//             list = new ListNode(l2Node.val);
+//             arr.push(list)
+//             l2Node = l2Node.next;
+//         }
+
+//         if (i > 0) {
+//             arr[i - 1].next = arr[i];
+//         }
+//         i++
+//     }
+
+//     return arr[0];
+// };
+
+// console.log(mergeTwoLists(l1, l2));

@@ -62,11 +62,12 @@ let maxSubArray___ = function (nums) {
 };
 
 
-let maxSubArray = function (nums) {
+let maxSubArray____ = function (nums) {
     if (nums.length == 1) {
         return nums[0]
     }
     let max_so_far = max_ending_here = 0;
+    let negative = 0;
 
     for (let i = 0; i < nums.length; i++) {
         max_ending_here = max_ending_here + nums[i]
@@ -74,6 +75,10 @@ let maxSubArray = function (nums) {
         if (max_so_far < max_ending_here) {
             max_so_far = max_ending_here
         }
+
+        // if (max_so_far > max_ending_here) {
+        //     negative = max_ending_here;
+        // }
 
         if (max_ending_here < 0) {
             max_ending_here = 0
@@ -85,10 +90,48 @@ let maxSubArray = function (nums) {
 }
 
 
-// console.log(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4])); // 6
-// console.log(maxSubArray([-2, 1])); // 1
-// console.log(maxSubArray([-2, -1])); // -1
-// console.log(maxSubArray([5, 10, 10])); // 25
-// console.log(maxSubArray([5, 10])); // 15
-// console.log(maxSubArray([-2, -1])); // -1
-console.log(maxSubArray([-10, -5, -20, -1])); // -1
+// Runtime: 92 ms, faster than 43.04 %
+// Memory Usage: 39.4 MB, less than 26.12 %
+let maxSubArray_____ = function (nums) {
+    let res = nums[0];
+    let tot = nums[0];
+
+    for (let i = 1; i < nums.length; i++) {
+        sum = tot + nums[i];
+        if (nums[i] > sum) {
+            tot = nums[i];
+        } else {
+            tot = sum
+        }
+
+        if (res > tot) {
+            res = res
+        } else {
+            res = tot;
+        }
+    }
+    return res;
+}
+
+// Runtime: 84 ms, faster than 76.91 % 
+// Memory Usage: 39.2 MB, less than 47.38 % 
+let maxSubArray = function (nums) {
+    let res = nums[0];
+    let tot = nums[0];
+
+    for (let i = 1; i < nums.length; i++) {
+        tot = Math.max(nums[i], tot + nums[i]);
+        res = Math.max(res, tot);
+    }
+
+    return res;
+}
+
+
+
+console.log(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4])); // 6
+console.log(maxSubArray([-2, 1])); // 1
+console.log(maxSubArray([-2, -1])); // -1
+console.log(maxSubArray([5, -10, 10])); // 10
+console.log(maxSubArray([5, 10])); // 15
+console.log(maxSubArray([-2, -1])); // -1

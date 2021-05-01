@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="debounce">debounce</button>
+    <button id="throttle">throttle</button>
+    <script>
+        // debounce
+        const debounce_btn = document.getElementById('debounce');
+        const debounce = (func, delay) => {
+            let debounceTimer;
+            return function () {
+                if (debounceTimer) {
+                    clearTimeout(debounceTimer);
+                }
+                debounceTimer = setTimeout(() => func(), delay);
+            };
+        };
+        debounce_btn.addEventListener(
+            'click',
+            debounce(function () {
+                console.log('clicked');
+            }, 3000)
+        );
+
+        // throttle
+        const throttle_btn = document.getElementById('throttle');
+        const throttle = (func, delay) => {
+            let last = 0;
+            return () => {
+                const now = new Date().getTime();
+                if (now - last < delay) {
+                    return;
+                }
+                last = now;
+                return func();
+            };
+        };
+        throttle_btn.addEventListener(
+            'click',
+            throttle(function () {
+                console.log('clicked');
+            }, 3000)
+        );
+    </script>
+</body>
+</html>

@@ -23,8 +23,7 @@ const makeCallInSequence = (apiArray, callback) => {
     request(apiArray[0])
 }
 
-const cb = async res => Promise.all(res)
-    .then(responses => Promise.all(responses.map(response => response.json())))
+const cb = responses => Promise.all(responses.map(response => response.json()))
     .then(data => console.log(data));
     
-makeCallInSequence(arr, cb)
+makeCallInSequence(arr, cb);

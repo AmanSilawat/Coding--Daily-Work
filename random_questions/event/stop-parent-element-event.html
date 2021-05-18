@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<form id="form">
+			FORM
+			<div id="div">
+				DIV
+				<p id="p">P</p>
+			</div>
+		</form>
+        <script>
+            // all event handlers are registered in the bubbling phase, by default.
+            
+            function formEvent(event) {
+                console.log('form');
+                // event.stopPropagation();
+            }
+            function divEvent(event) {
+                console.log('div');
+                // event.stopPropagation();
+            }
+            function pEvent(event) {
+                event.stopPropagation();
+                console.log('p');
+            }
+
+            document.getElementById('form').addEventListener('click', formEvent);
+            document.getElementById('div').addEventListener('click', divEvent);
+            document.getElementById('p').addEventListener('click', pEvent);
+
+        </script>
+	</body>
+</html>

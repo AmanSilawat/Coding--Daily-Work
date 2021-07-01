@@ -45,8 +45,13 @@ class BinarySearchTree {
 var BST = new BinarySearchTree();
 
 
-BST.insert(50);
 
-BST.insert(20);
 
-BST.insert(25);
+BST.insert(10);
+BST.insert(5);
+BST.insert(-3);
+BST.insert(3);
+BST.insert(2);
+BST.insert(11);
+
+console.log(JSON.stringify(BST))
